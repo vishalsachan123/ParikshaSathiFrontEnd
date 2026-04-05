@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ── */
+:root {
+  --bg:          #f4f6fb;
+  --white:       #ffffff;
+  --indigo:      #5a4fcf;
+  --indigo-dark: #4338ca;
+  --indigo-light:#ede9fe;
+  --navy:        #1a1a2e;
+  --text-mid:    #4b5563;
+  --text-muted:  #9ca3af;
+  --border:      #e5e7eb;
+  --shadow:      0 2px 12px rgba(0,0,0,0.07);
+  --shadow-md:   0 4px 24px rgba(0,0,0,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body, #root {
+  background: var(--bg);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── Search bar hover ring ── */
+.search-input:hover {
+  border-color: var(--indigo) !important;
+  box-shadow: 0 0 0 4px rgba(90,79,207,0.1) !important;
+}
+
+/* ── MCQ option hover (can't do :not() easily in Tailwind) ── */
+.opt:hover:not(.sel):not(.ok):not(.no) {
+  border-color: var(--indigo);
+  background: var(--indigo-light);
+}
+
+/* ── Animations ── */
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.animate-fade-in  { animation: fadeIn  0.18s ease; }
+.animate-slide-up { animation: slideUp 0.22s cubic-bezier(.4,0,.2,1); }
+
+/* ── Progress bar ── */
+.prog-fill { transition: width 0.4s; }
+
+/* ── Stats: 2-col on small screens ── */
+@media (max-width: 640px) {
+  [data-stats-grid] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
